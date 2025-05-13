@@ -1,0 +1,20 @@
+# Archivos de compilación
+*.bin
+*.hex
+*.elf
+*.map
+*.o
+*.a
+*.lst
+
+Debug/
+# Entornos IDE
+.vscode/
+.idea/
+*.project
+*.cproject
+
+# Archivos temporales
+*.swp
+*.swo
+*~
