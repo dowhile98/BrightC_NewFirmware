@@ -11,8 +11,6 @@ Debug/
 # Entornos IDE
 .vscode/
 .idea/
-*.project
-*.cproject
 
 # Archivos temporales
 *.swp
