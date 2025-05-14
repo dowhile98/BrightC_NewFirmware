@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="hasShownOverlayPopupBefore" value="true"/>
+	<item key="replaceBarOpen" value="false"/>
+	<list key="searchhistory">
+		<item value="fx_directory_"/>
+		<item value="DIR"/>
+		<item value="mpiMulAccCore"/>
+		<item value="SIV_IV"/>
+		<item value="mutex"/>
+		<item value="esp32WifiStaConnectedEvent"/>
+		<item value="esp32WifiStaStopEvent"/>
+		<item value="esp32WifiStaRxCallback"/>
+	</list>
+</section>

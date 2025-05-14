@@ -32,7 +32,6 @@ typedef struct brigthc_network_conf{
 	Ipv4Addr ip;						//device ip
 	Ipv4Addr gateway;					//device gateway
 	Ipv4Addr netmask;
-	Ipv4Addr ip;
 	MacAddr macAddr;
 	/*DHCP client enable*/
 	uint8_t dhcp_client;

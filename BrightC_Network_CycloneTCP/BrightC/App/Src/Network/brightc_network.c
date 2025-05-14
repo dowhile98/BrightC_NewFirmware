@@ -38,7 +38,7 @@
 #define APP_IPV4_PRIMARY_DNS "8.8.8.8"
 #define APP_IPV4_SECONDARY_DNS "8.8.4.4"
 
-#define APP_USE_SLAAC ENABLED
+#define APP_USE_SLAAC DISABLED
 #define APP_IPV6_LINK_LOCAL_ADDR "fe80::769"
 #define APP_IPV6_PREFIX "2001:db8::"
 #define APP_IPV6_PREFIX_LENGTH 64
@@ -86,23 +86,20 @@ error_t updateUserLoadKeys(void)
 
 UINT brightc_network_init(void *memory){
 	UINT ret = TX_SUCCESS;
-	CHAR *pointer;
+
 	/* USER CODE BEGIN App_ThreadX_MEM_POOL */
 
 	/* USER CODE END App_ThreadX_MEM_POOL */
 
 	/* USER CODE BEGIN App_ThreadX_Init */
 	error_t error;
-	OsTaskId taskId;
-	OsTaskParameters taskParams;
+
 	NetInterface *interface;
 	MacAddr macAddr;
 #if (APP_USE_DHCP_CLIENT == DISABLED)
 	Ipv4Addr ipv4Addr;
 #endif
-#if (APP_USE_SLAAC == DISABLED)
-	Ipv6Addr ipv6Addr;
-#endif
+
 	//Configure debug UART
 	debugInit(115200);
 
@@ -115,7 +112,7 @@ UINT brightc_network_init(void *memory){
 	//Start-up message
 	TRACE_INFO("\r\n");
 	TRACE_INFO("****************************************************\r\n");
-	TRACE_INFO("*** CycloneBOOT IAP Single-Bank HTTP Server Demo ***\r\n");
+	TRACE_INFO("***                  CycloneTCP                  ***\r\n");
 	TRACE_INFO("****************************************************\r\n");
 	TRACE_INFO("Copyright: 2010-2023 Oryx Embedded SARL\r\n");
 	TRACE_INFO("Compiled: %s %s\r\n", __DATE__, __TIME__);
@@ -211,75 +208,7 @@ UINT brightc_network_init(void *memory){
 #endif
 #endif
 
-#if (IPV6_SUPPORT == ENABLED)
-#if (APP_USE_SLAAC == ENABLED)
-	//Get default settings
-	slaacGetDefaultSettings(&slaacSettings);
-	//Set the network interface to be configured
-	slaacSettings.interface = interface;
-
-	//SLAAC initialization
-	error = slaacInit(&slaacContext, &slaacSettings);
-	//Failed to initialize SLAAC?
-	if(error)
-	{
-		//Debug message
-		TRACE_ERROR("Failed to initialize SLAAC!\r\n");
-	}
-
-	//Start IPv6 address autoconfiguration process
-	error = slaacStart(&slaacContext);
-	//Failed to start SLAAC process?
-	if(error)
-	{
-		//Debug message
-		TRACE_ERROR("Failed to start SLAAC!\r\n");
-	}
-#else
-	//Set link-local address
-	ipv6StringToAddr(APP_IPV6_LINK_LOCAL_ADDR, &ipv6Addr);
-	ipv6SetLinkLocalAddr(interface, &ipv6Addr);
-
-	//Set IPv6 prefix
-	ipv6StringToAddr(APP_IPV6_PREFIX, &ipv6Addr);
-	ipv6SetPrefix(interface, 0, &ipv6Addr, APP_IPV6_PREFIX_LENGTH);
-
-	//Set global address
-	ipv6StringToAddr(APP_IPV6_GLOBAL_ADDR, &ipv6Addr);
-	ipv6SetGlobalAddr(interface, 0, &ipv6Addr);
-
-	//Set default router
-	ipv6StringToAddr(APP_IPV6_ROUTER, &ipv6Addr);
-	ipv6SetDefaultRouter(interface, 0, &ipv6Addr);
-
-	//Set primary and secondary DNS servers
-	ipv6StringToAddr(APP_IPV6_PRIMARY_DNS, &ipv6Addr);
-	ipv6SetDnsServer(interface, 0, &ipv6Addr);
-	ipv6StringToAddr(APP_IPV6_SECONDARY_DNS, &ipv6Addr);
-	ipv6SetDnsServer(interface, 1, &ipv6Addr);
-#endif
-#endif
-
-/*
-	//Load Update public signature key
-	error = updateUserLoadKeys();
-	if (error)
-	{
-		//Debug message
-		TRACE_ERROR("Failed to load Update user keys!\r\n");
-		return error;
-	}
-
-	//Create IAP mutex
-	if(!osCreateMutex(&updateMutex))
-	{
-		//Debug message
-		TRACE_ERROR("Failed to create IAP mutex!\r\n");
-	}
-*/
 	/* USER CODE END App_ThreadX_Init */
-
-	return ret;
 
 	return ret;
 }

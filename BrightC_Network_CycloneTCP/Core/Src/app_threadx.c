@@ -48,7 +48,7 @@ extern void osSetBytePool(void *ptr);
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN PFP */
-extern UINT App_cyclone_tcp_Init(VOID *memory_ptr);
+
 /* USER CODE END PFP */
 
 /**
@@ -62,7 +62,6 @@ UINT App_ThreadX_Init(VOID *memory_ptr)
   /* USER CODE BEGIN App_ThreadX_MEM_POOL */
   osSetBytePool(memory_ptr);
 
-  App_cyclone_tcp_Init(memory_ptr);
   /* USER CODE END App_ThreadX_MEM_POOL */
 
   /* USER CODE BEGIN App_ThreadX_Init */

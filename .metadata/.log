@@ -1,0 +1,120 @@
+!SESSION 2025-05-14 09:26:50.989 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -data /home/tecna-smart-lab/GitHub/BrightC_NewFirmware
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-05-14 09:26:59.525
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-05-14 09:26:59.526
+!MESSAGE Log4j2 initialized with config file /home/tecna-smart-lab/GitHub/BrightC_NewFirmware/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-05-14 09:27:03.425
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-05-14 09:37:55.617
+!MESSAGE Indexed 'BrightC_Network_CycloneTCP' (561 sources, 557 headers) in 22.7 sec: 50,391 declarations; 252,389 references; 3 unresolved inclusions; 46 syntax errors; 171 unresolved names (0.056%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-05-14 09:45:27.675
+!MESSAGE Indexed 'BrightC_Firmware' (22 sources, 85 headers) in 6.16 sec: 7,767 declarations; 56,194 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0031%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-05-14 10:06:59.897
+!MESSAGE Indexed 'BrightC_Firmware' (680 sources, 778 headers) in 15.8 sec: 75,517 declarations; 385,553 references; 343 unresolved inclusions; 14 syntax errors; 19,946 unresolved names (4.1%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-05-14 10:20:55.955
+!MESSAGE Indexed 'BrightC_Firmware' (841 sources, 800 headers) in 20.7 sec: 80,218 declarations; 440,415 references; 330 unresolved inclusions; 11 syntax errors; 19,895 unresolved names (3.7%)
+!SESSION 2025-05-14 10:35:03.236 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-05-14 10:36:09.260
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-05-14 10:36:09.261
+!MESSAGE Log4j2 initialized with config file /home/tecna-smart-lab/GitHub/BrightC_NewFirmware/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-05-14 10:36:19.514
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-05-14 12:08:41.389 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-05-14 12:08:53.182
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-05-14 12:08:53.183
+!MESSAGE Log4j2 initialized with config file /home/tecna-smart-lab/GitHub/BrightC_NewFirmware/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-05-14 12:09:03.068
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-05-14 12:20:30.264
+!MESSAGE Indexed 'BrightC_Firmware' (617 sources, 612 headers) in 20.2 sec: 58,361 declarations; 312,820 references; 4 unresolved inclusions; 46 syntax errors; 181 unresolved names (0.049%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-05-14 12:21:05.737
+!MESSAGE Indexed 'BrightC_Firmware' (617 sources, 612 headers) in 15.3 sec: 58,361 declarations; 312,820 references; 4 unresolved inclusions; 46 syntax errors; 181 unresolved names (0.049%)
+!SESSION 2025-05-14 12:28:33.497 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-05-14 12:28:46.305
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-05-14 12:28:46.306
+!MESSAGE Log4j2 initialized with config file /home/tecna-smart-lab/GitHub/BrightC_NewFirmware/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-05-14 12:28:57.651
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-05-14 12:41:20.407
+!MESSAGE Indexed 'BrightC_Firmware' (860 sources, 635 headers) in 29.5 sec: 62,906 declarations; 347,818 references; 3 unresolved inclusions; 46 syntax errors; 179 unresolved names (0.044%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-05-14 12:51:07.732
+!MESSAGE Indexed 'BrightC_Firmware' (863 sources, 639 headers) in 16 sec: 63,093 declarations; 349,245 references; 3 unresolved inclusions; 46 syntax errors; 171 unresolved names (0.041%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-05-14 12:52:05.867
+!MESSAGE Indexed 'BrightC_Firmware' (863 sources, 640 headers) in 27.8 sec: 63,232 declarations; 352,732 references; 3 unresolved inclusions; 46 syntax errors; 171 unresolved names (0.041%)
+!SESSION 2025-05-14 13:01:16.668 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-05-14 13:02:40.255
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-05-14 13:02:40.257
+!MESSAGE Log4j2 initialized with config file /home/tecna-smart-lab/GitHub/BrightC_NewFirmware/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-05-14 13:02:50.334
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-05-14 13:14:31.943 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-05-14 13:15:33.761
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-05-14 13:15:33.762
+!MESSAGE Log4j2 initialized with config file /home/tecna-smart-lab/GitHub/BrightC_NewFirmware/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-05-14 13:15:46.460
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-05-14 15:48:19.048
+!MESSAGE Indexed 'BrightC_Firmware' (865 sources, 644 headers) in 20.9 sec: 63,523 declarations; 354,580 references; 3 unresolved inclusions; 46 syntax errors; 172 unresolved names (0.041%)
