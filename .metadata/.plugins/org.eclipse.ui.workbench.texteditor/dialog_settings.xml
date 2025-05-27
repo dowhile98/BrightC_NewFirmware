@@ -3,6 +3,11 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
+		<item value="ram_no_cache"/>
+		<item value="RAM_D2_NO_CACHE"/>
+		<item value="stdio"/>
+		<item value="STM32H743xI"/>
+		<item value="vtor"/>
 		<item value="fx_directory_"/>
 		<item value="DIR"/>
 		<item value="mpiMulAccCore"/>

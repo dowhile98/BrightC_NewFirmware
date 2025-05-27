@@ -81,11 +81,18 @@ void osStartKernel(void)
  **/
 
 OsTaskId osCreateTask(const char_t *name, OsTaskCode taskCode, void *arg,
-   const OsTaskParameters *params)
+   OsTaskParameters *params)
 {
    UINT status;
    OsTaskId taskId;
 
+   //allocate memory
+   if(params->tcb == NULL){
+	   params->tcb  = (TX_THREAD *)osAllocMem(sizeof(TX_THREAD));
+   }
+   if(params->stack == NULL){
+	   params->stack = (uint32_t *)osAllocMem( params->stackSize * sizeof(uint32_t));
+   }
    //Check parameters
    if(params->tcb != NULL && params->stack != NULL)
    {

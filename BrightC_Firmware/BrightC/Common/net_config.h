@@ -74,6 +74,10 @@
 #define TFTP_TRACE_LEVEL         TRACE_LEVEL_INFO
 #define MODBUS_TRACE_LEVEL       TRACE_LEVEL_INFO
 
+
+//driver config
+//#define STM32H7XX_ETH_RAM_SECTION 		".ram_no_cache"
+#define STM32H7XX_ETH_TX_BUFFER_COUNT 	8
 //Number of network adapters
 #define NET_INTERFACE_COUNT 1
 

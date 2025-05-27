@@ -1,0 +1,27 @@
+/*
+ * brightc_mem_manager.c
+ *
+ *  Created on: May 26, 2025
+ *      Author: tecna-smart-lab
+ */
+
+/*includes ---------------------------------------------------------------------------------------------------------------*/
+#include "brightc.h"
+
+
+/*global variables -------------------------------------------------------------------------------------------------------*/
+static TX_MUTEX brightc_mem_manager_mutex;
+
+/*Function definitions ---------------------------------------------------------------------------------------------------*/
+UINT brightc_mem_manager_init(void){
+	UINT ret = TX_SUCCESS;
+
+	ret = tx_mutex_create(&brightc_mem_manager_mutex, "mem manager mutex", TX_INHERIT);
+	if(ret != TX_SUCCESS){
+
+		return ret;
+	}
+
+	return ret;
+}
+

@@ -32,4 +32,15 @@
 //Select underlying RTOS
 #define USE_THREADX
 
+#include "lwprintf.h"
+#include <stdio.h>
+#define osSnprintf(dest, size, ...) 		lwprintf_snprintf(dest, size, __VA_ARGS__)
+#define osVsnprintf(dest, size, format, ap) lwprintf_vsnprintf(dest, size, format, ap)
+ #define osSprintf(dest, ...) 				lwprintf_sprintf(dest, __VA_ARGS__)
+
+#include <stm32h7xx_hal.h>
+#define sleep(delay)						HAL_Delay(delay * 1000)
+
+#include "tx_api.h"
+#define OS_SYSTICKS_TO_MS(n) 				(n * TX_TIMER_TICKS_PER_SECOND / 1000)
 #endif

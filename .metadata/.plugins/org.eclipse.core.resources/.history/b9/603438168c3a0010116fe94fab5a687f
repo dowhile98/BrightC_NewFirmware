@@ -1,0 +1,46 @@
+/**
+ * @file os_port_config.h
+ * @brief RTOS port configuration file
+ *
+ * @section License
+ *
+ * SPDX-License-Identifier: GPL-2.0-or-later
+ *
+ * Copyright (C) 2010-2024 Oryx Embedded SARL. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * @author Oryx Embedded SARL (www.oryx-embedded.com)
+ * @version 3.0.4
+ **/
+
+#ifndef _OS_PORT_CONFIG_H
+#define _OS_PORT_CONFIG_H
+
+//Select underlying RTOS
+#define USE_THREADX
+#define GPL_LICENSE_TERMS_ACCEPTED
+
+
+#define OS_MS_TO_SYSTICKS(n) 	((n) * TX_TIMER_TICKS_PER_SECOND / 1000)
+#define OS_SYSTICKS_TO_MS(n) 	(n) * 1000 / TX_TIMER_TICKS_PER_SECOND
+
+
+
+#include "lwprintf.h"
+#define osSprintf(dest, ...) 		lwprintf_sprintf(dest, __VA_ARGS__)
+#define osSnprintf(dest, size, ...) lwprintf_snprintf(dest, size, __VA_ARGS__)
+#define osVsnprintf(dest, size, format, ap) vsnprintf(dest, size, format, ap)
+#endif

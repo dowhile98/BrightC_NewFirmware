@@ -155,7 +155,7 @@ void osStartKernel(void);
 
 //Task management
 OsTaskId osCreateTask(const char_t *name, OsTaskCode taskCode, void *arg,
-   const OsTaskParameters *params);
+   OsTaskParameters *params);
 
 void osDeleteTask(OsTaskId taskId);
 void osDelayTask(systime_t delay);

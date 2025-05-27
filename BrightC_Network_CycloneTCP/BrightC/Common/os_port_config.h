@@ -38,4 +38,13 @@
 #define OS_SYSTICKS_TO_MS(n) 	(n) * 1000 / TX_TIMER_TICKS_PER_SECOND
 
 
+
+#include "lwprintf.h"
+#define osSprintf(dest, ...) 				lwprintf_sprintf(dest, __VA_ARGS__)
+#define osSnprintf(dest, size, ...) 		lwprintf_snprintf(dest, size, __VA_ARGS__)
+#define osVsnprintf(dest, size, format, ap) lwprintf_vsnprintf(dest, size, format, ap)
+
+#define sleep(delay)						HAL_Delay(delay * 1000)
+//#define sleep(delay) 						tx_thread_sleep(delay * TX_TIMER_TICKS_PER_SECOND / 1000)
+
 #endif

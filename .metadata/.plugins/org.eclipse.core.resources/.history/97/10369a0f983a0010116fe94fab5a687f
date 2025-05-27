@@ -1,0 +1,107 @@
+/*
+ * brightc_mem_manager.c
+ *
+ *  Created on: May 26, 2025
+ *      Author: tecna-smart-lab
+ */
+
+/*includes ---------------------------------------------------------------------------------------------------------------*/
+#include "brightc.h"
+
+/*defines ---------------------------------------------------------------------------------------------------------------*/
+#ifndef BRIGHTC_MEM_MANAGER_SIZE
+#define BRIGHTC_MEM_MANAGER_SIZE		(1024 * 32)
+#endif
+/*global variables -------------------------------------------------------------------------------------------------------*/
+static TX_MUTEX brightc_mem_manager_mutex;
+static TX_BYTE_POOL brightc_mem_manager_pool;
+static CHAR brightc_mem_manager_memory[BRIGHTC_MEM_MANAGER_SIZE];
+
+/*Function definitions ---------------------------------------------------------------------------------------------------*/
+UINT brightc_mem_manager_init(void){
+	UINT ret = TX_SUCCESS;
+
+	ret = tx_mutex_create(&brightc_mem_manager_mutex, "mem manager mutex", TX_INHERIT);
+	if(ret != TX_SUCCESS){
+
+		return ret;
+	}
+
+	/*create byte pool*/
+	ret = tx_byte_pool_create(&brightc_mem_manager_pool, "brightc pool", brightc_mem_manager_memory, BRIGHTC_MEM_MANAGER_SIZE);
+	if(ret != TX_SUCCESS){
+
+		return ret;
+	}
+	return ret;
+}
+
+
+UINT brightc_malloc(size_t size){
+	char *pointer;
+	/*get mutex*/
+	tx_mutex_get(&brightc_mem_manager_mutex, TX_WAIT_FOREVER);
+	/*reserve memory*/
+	if(tx_byte_allocate(&brightc_mem_manager_pool, (VOID **)&pointer, TX_NO_WAIT) != TX_SUCCESS){
+
+		pointer = NULL;
+	}
+	/*release mutex*/
+	tx_mutex_put(&brightc_mem_manager_mutex);
+	/*return pointer*/
+	return pointer;
+}
+
+void brightc_free(void *ptr){
+	/*get mutex*/
+	tx_mutex_get(&brightc_mem_manager_mutex, TX_WAIT_FOREVER);
+	/*release memory*/
+	if(tx_byte_release(ptr) == TX_SUCCESS){
+		ptr = NULL;
+	}
+	/*release mutex*/
+	tx_mutex_put(&brightc_mem_manager_mutex);
+}
+
+
+
+/**
+ * @brief Allocate a memory block
+ * @param[in] size Bytes to allocate
+ * @return A pointer to the allocated memory block or NULL if
+ *   there is insufficient memory available
+ **/
+
+void *osAllocMem(size_t size)
+{
+   void *p;
+
+   //Allocate a memory block
+   p = brightc_malloc(size);
+
+   //Return a pointer to the newly allocated memory block
+   return p;
+}
+
+
+/**
+ * @brief Release a previously allocated memory block
+ * @param[in] p Previously allocated memory block to be freed
+ **/
+
+void osFreeMem(void *p)
+{
+   //Make sure the pointer is valid
+   if(p != NULL)
+   {
+      //Debug message
+      TRACE_DEBUG("Freeing memory at 0x%08" PRIXPTR "\r\n", (uintptr_t) p);
+
+      //Enter critical section
+      osSuspendAllTasks();
+      //Free memory block
+      free(p);
+      //Leave critical section
+      osResumeAllTasks();
+   }
+}
