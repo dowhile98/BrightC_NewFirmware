@@ -74,7 +74,9 @@
 #define TFTP_TRACE_LEVEL         TRACE_LEVEL_INFO
 #define MODBUS_TRACE_LEVEL       TRACE_LEVEL_INFO
 
-
+/*tcp task config*/
+#define NET_TASK_PRIORITY 		14
+#define NET_TASK_STACK_SIZE 	650
 //driver config
 //#define STM32H7XX_ETH_RAM_SECTION 		".ram_no_cache"
 #define STM32H7XX_ETH_TX_BUFFER_COUNT 	8

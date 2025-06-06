@@ -56,4 +56,27 @@ typedef struct brightc_network{
 	DhcpClientContext dhcpClientContext;
 }brightc_network_t;
 
+/*brightc hvac handle function*/
+typedef uint8_t (*brightc_hvac_compressor_cb)(uint8_t);
+typedef uint8_t (*brightc_hvac_fan_cb)(uint8_t);
+
+/**
+ *
+ */
+typedef uint8_t (*brightc_hvac_event_cb)(uint8_t, uint8_t);
+/**
+ * BrightC hvac structure
+ *
+ */
+typedef struct brightc_hvac{
+	/*Mutex*/
+	OsMutex mutex;
+	/*cb function*/
+
+	/*state*/
+	uint8_t state;
+}brightc_hvac_t;
+
+
+
 #endif /* APP_INCLUDE_BRIGHTC_TYPEDEFS_H_ */

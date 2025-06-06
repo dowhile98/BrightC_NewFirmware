@@ -3,6 +3,8 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
+		<item value="NET_MEM_POOL_BUFFER_SIZE"/>
+		<item value="memPoolAllocTable"/>
 		<item value="ram_no_cache"/>
 		<item value="RAM_D2_NO_CACHE"/>
 		<item value="stdio"/>

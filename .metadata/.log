@@ -2805,3 +2805,48 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64
 
 !ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-05-26 21:57:35.142
 !MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-05-27 18:51:48.108 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-05-27 18:52:02.384
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-05-27 18:52:02.387
+!MESSAGE Log4j2 initialized with config file /home/tecna-smart-lab/GitHub/BrightC_NewFirmware/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-05-27 18:52:13.178
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-06-02 18:54:18.570 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-06-02 18:54:44.174
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-02 18:54:44.175
+!MESSAGE Log4j2 initialized with config file /home/tecna-smart-lab/GitHub/BrightC_NewFirmware/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-02 18:54:54.321
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-06-05 20:56:42.108 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -data /home/tecna-smart-lab/GitHub/BrightC_NewFirmware
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-06-05 20:56:50.619
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-05 20:56:50.620
+!MESSAGE Log4j2 initialized with config file /home/tecna-smart-lab/GitHub/BrightC_NewFirmware/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-05 20:57:00.766
+!MESSAGE Started RMI Server, listening on port 41337
