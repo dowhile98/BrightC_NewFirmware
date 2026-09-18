@@ -1,4 +1,0 @@
-[manifest]
-path = example-application
-file = west.yml
-

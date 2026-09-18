@@ -16,3 +16,20 @@ Debug/
 *.swp
 *.swo
 *~
+
+# editors
+.vscode
+*.swp
+*~
+
+# python
+.venv
+
+# build
+/build*
+/twister-out*
+
+__pycache__/
+
+# docs
+/doc/_build*
