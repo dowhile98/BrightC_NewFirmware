@@ -1,0 +1,2 @@
+# Load board Kconfig descriptions.
+osource "/media/tecna/disk11/linux/embedded-mcu/BrightC_Workspace/BrightC_NewFirmware/boards/daecge/brightc-controllerv3/Kconfig.brightc-controllerv3"

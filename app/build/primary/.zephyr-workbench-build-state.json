@@ -1,0 +1,21 @@
+{
+  "board": "brightc-controllerv3",
+  "sysbuild": false,
+  "snippets": [],
+  "cmakeArgs": "",
+  "envVars": {
+    "EXTRA_CONF_FILE": [],
+    "EXTRA_DTC_OVERLAY_FILE": [],
+    "EXTRA_ZEPHYR_MODULES": [],
+    "SHIELD": [],
+    "SNIPPETS": []
+  },
+  "toolchainEnv": {
+    "ZEPHYR_TOOLCHAIN_VARIANT": "zephyr"
+  },
+  "sdkEnv": {},
+  "workspaceEnv": {
+    "ZEPHYR_BASE": "/media/tecna/disk11/linux/embedded-mcu/BrightC_Workspace/zephyr",
+    "ZEPHYR_PROJECT_DIRECTORY": "/media/tecna/disk11/linux/embedded-mcu/BrightC_Workspace"
+  }
+}

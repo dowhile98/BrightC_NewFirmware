@@ -1,0 +1,6 @@
+board:
+  name: brightc_h743zi
+  full_name: BrightC-B1 H743ZI BaseBoard V3
+  vendor: daecge
+  socs:
+    - name: stm32h743xx

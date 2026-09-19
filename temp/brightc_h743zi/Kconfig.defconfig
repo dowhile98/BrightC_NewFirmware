@@ -1,0 +1,10 @@
+# BrightC-B1 H743ZI BaseBoard V3 configuration
+
+# SPDX-License-Identifier: Apache-2.0
+
+if BOARD_BRIGHTC_H743ZI
+
+configdefault NET_L2_ETHERNET
+	default y
+
+endif # BOARD_BRIGHTC_H743ZI

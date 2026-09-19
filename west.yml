@@ -19,4 +19,19 @@ manifest:
         name-allowlist:
           - cmsis_6    # required by the ARM port for Cortex-M
           - hal_nordic # required by the custom_plank board (Nordic based)
-          - hal_stm32  # required by the nucleo_f302r8 board (STM32 based)
+          - hal_stm32  # required by STM32 based boards
+          - fatfs
+          - mbedtls
+          - mldsa-native
+          - tf-psa-crypto
+          - mipi-sys-t
+          - percepio
+          - segger
+          - lvgl
+          - zcbor
+          - cmsis-dsp
+          - cmsis-nn
+    - name: microconf
+      url: https://github.com/dowhile98/microconf.git
+      revision: master
+      path: modules/lib/microconf
