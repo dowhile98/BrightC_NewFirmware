@@ -28,7 +28,7 @@ Debug/
 # build
 /build*
 /twister-out*
-
+/app/build/
 __pycache__/
 
 # docs
