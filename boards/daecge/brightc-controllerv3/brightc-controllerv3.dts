@@ -404,25 +404,14 @@
 	bias-disable;
 };
 
-/* ---- ADC Clock Configuration (Common Clusters) ---- */
-&adc12_common {
-	st,adc-clock-source = "SYNC";
-	st,adc-prescaler = <4>;
-	status = "okay";
-};
-
-&adc3_common {
-	st,adc-clock-source = "SYNC";
-	st,adc-prescaler = <4>;
-	status = "okay";
-};
-
 /* ---- ADC1 (9 Canales: PC0, PA0, PA3, PA4, PA6, PB0, PB1, PF11, PF12) ---- */
 &adc1 {
 	pinctrl-0 = <&adc1_inp10_pc0 &adc1_inp16_pa0 &adc1_inp15_pa3
 		     &adc1_inp18_pa4 &adc1_inp3_pa6 &adc1_inp9_pb0
 		     &adc1_inp5_pb1 &adc1_inp2_pf11 &adc1_inp6_pf12>;
 	pinctrl-names = "default";
+	st,adc-clock-source = "SYNC";
+	st,adc-prescaler = <4>;
 	dmas = <&dmamux1 0 9 (STM32_DMA_PERIPH_TO_MEMORY | STM32_DMA_PRIORITY_HIGH)>;
 	dma-names = "rx";
 	status = "okay";
@@ -444,6 +433,8 @@
 &adc2 {
 	pinctrl-0 = <&adc2_inp2_pf13 &adc2_inp6_pf14>;
 	pinctrl-names = "default";
+	st,adc-clock-source = "SYNC";
+	st,adc-prescaler = <4>;
 	dmas = <&dmamux1 1 10 (STM32_DMA_PERIPH_TO_MEMORY | STM32_DMA_PRIORITY_HIGH)>;
 	dma-names = "rx";
 	status = "okay";
@@ -458,6 +449,8 @@
 &adc3 {
 	pinctrl-0 = <&adc3_inp2_pf9 &adc3_inp3_pf7 &adc3_inp4_pf5 &adc3_inp5_pf3>;
 	pinctrl-names = "default";
+	st,adc-clock-source = "SYNC";
+	st,adc-prescaler = <4>;
 	dmas = <&dmamux1 2 115 (STM32_DMA_PERIPH_TO_MEMORY | STM32_DMA_PRIORITY_HIGH)>;
 	dma-names = "rx";
 	status = "okay";
