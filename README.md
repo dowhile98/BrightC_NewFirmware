@@ -1,138 +1,191 @@
-# Zephyr Example Application
+# DAECGE BrightC Controller V3 Firmware
 
-<a href="https://github.com/zephyrproject-rtos/example-application/actions/workflows/build.yml?query=branch%3Amain">
-  <img src="https://github.com/zephyrproject-rtos/example-application/actions/workflows/build.yml/badge.svg?event=push">
+<a href="https://github.com/dowhile98/BrightC_NewFirmware/actions/workflows/build.yml">
+  <img src="https://github.com/dowhile98/BrightC_NewFirmware/actions/workflows/build.yml/badge.svg" alt="Build Status">
 </a>
-<a href="https://github.com/zephyrproject-rtos/example-application/actions/workflows/docs.yml?query=branch%3Amain">
-  <img src="https://github.com/zephyrproject-rtos/example-application/actions/workflows/docs.yml/badge.svg?event=push">
+<a href="https://github.com/dowhile98/BrightC_NewFirmware/actions/workflows/docs.yml">
+  <img src="https://github.com/dowhile98/BrightC_NewFirmware/actions/workflows/docs.yml/badge.svg" alt="Documentation Status">
 </a>
-<a href="https://zephyrproject-rtos.github.io/example-application">
-  <img alt="Documentation" src="https://img.shields.io/badge/documentation-3D578C?logo=sphinx&logoColor=white">
+<a href="https://zephyrproject.org">
+  <img src="https://img.shields.io/badge/RTOS-Zephyr-blue.svg" alt="Zephyr RTOS">
 </a>
-<a href="https://zephyrproject-rtos.github.io/example-application/doxygen">
-  <img alt="API Documentation" src="https://img.shields.io/badge/API-documentation-3D578C?logo=c&logoColor=white">
+<a href="https://www.st.com/en/microcontrollers-microprocessors/stm32h743zi.html">
+  <img src="https://img.shields.io/badge/Target-STM32H743ZI-002050.svg?logo=stmicroelectronics" alt="STM32H743ZI">
 </a>
 
-This repository contains a Zephyr example application. The main purpose of this
-repository is to serve as a reference on how to structure Zephyr-based
-applications. Some of the features demonstrated in this example are:
+Firmware para el controlador industrial **DAECGE BrightC Controller V3** sobre la placa base **BrightC-B1 BaseBoard V3**, desarrollado con **Zephyr RTOS** (Hardware Model v2) siguiendo principios de **Clean Architecture** y **Test-Driven Development (TDD)**.
 
-- Basic [Zephyr application][app_dev] skeleton
-- [Zephyr workspace applications][workspace_app]
-- [Zephyr modules][modules]
-- [West T2 topology][west_t2]
-- [Custom boards][board_porting]
-- Custom [devicetree bindings][bindings]
-- Out-of-tree [drivers][drivers]
-- Out-of-tree libraries
-- Example CI configuration (using GitHub Actions)
-- Custom [west extension][west_ext]
-- Custom [Zephyr runner][runner_ext]
-- Doxygen and Sphinx documentation boilerplate
+---
 
-This repository is versioned together with the [Zephyr main tree][zephyr]. This
-means that every time that Zephyr is tagged, this repository is tagged as well
-with the same version number, and the [manifest](west.yml) entry for `zephyr`
-will point to the corresponding Zephyr tag. For example, the `example-application`
-v2.6.0 will point to Zephyr v2.6.0. Note that the `main` branch always
-points to the development branch of Zephyr, also `main`.
+## 1. Características de Hardware y Arquitectura
 
-[app_dev]: https://docs.zephyrproject.org/latest/develop/application/index.html
-[workspace_app]: https://docs.zephyrproject.org/latest/develop/application/index.html#zephyr-workspace-app
-[modules]: https://docs.zephyrproject.org/latest/develop/modules.html
-[west_t2]: https://docs.zephyrproject.org/latest/develop/west/workspaces.html#west-t2
-[board_porting]: https://docs.zephyrproject.org/latest/guides/porting/board_porting.html
-[bindings]: https://docs.zephyrproject.org/latest/guides/dts/bindings.html
-[drivers]: https://docs.zephyrproject.org/latest/reference/drivers/index.html
-[zephyr]: https://github.com/zephyrproject-rtos/zephyr
-[west_ext]: https://docs.zephyrproject.org/latest/develop/west/extensions.html
-[runner_ext]: https://docs.zephyrproject.org/latest/develop/modules.html#external-runners
+El controlador está basado en el microcontrolador de alto rendimiento **STM32H743ZIT6** (empaquetado LQFP144):
 
-## Getting Started
+* **Núcleo y Frecuencia:** ARM Cortex-M7 con FPU de doble precisión, reloj principal a **480 MHz** (desde cristal HSE de 25 MHz), RTC con LSE de 32.768 kHz.
+* **Memoria:** 2 MB Flash dual-bank interna, 1 MB SRAM (incluye DTCM y AXI SRAM).
+* **Comunicaciones Industriales:**
+  * **Ethernet:** Interfaz RMII nativa con PHY LAN8742A (+ opción SPI con W5500).
+  * **Consola de Sistema:** USB-to-Serial vía USART1 (PB14 TX / PB15 RX) a 115200 8N1.
+  * **RS-485:** Dos canales diferenciales independientes con control de dirección DE/RE (USART2 en PD5/PD6/PD4 y USART6 en PC6/PC7/PG8).
+  * **Pantalla HMI:** Interfaz para pantalla LCD táctil DWIN vía USART3 (PB10/PB11) con control de alimentación y flag de sobrecarga (PD9/PD8).
+  * **Conectividad Wi-Fi:** Coprocesador ESP32 vía UART4 (PD1/PD0) con control de reset dedicado (PD14).
+* **Expansores de E/S y Relés:**
+  * Clúster SPI1 con 4 expansores **Microchip MCP23S17** para:
+    * 24 canales de entradas de alarma digital con interrupción por hardware.
+    * 18 canales de salida para relés (HVAC, ventiladores inteligentes y alarmas del sistema).
+* **Adquisición Analógica:**
+  * ADC1 (9 canales analógicos para sensores de temperatura y presión).
+  * ADC2 (2 canales analógicos).
+  * ADC3 (4 canales analógicos).
+* **Almacenamiento y Archivos:**
+  * Memoria Flash externa QSPI **W25Q16** integrada con sistema de archivos **LittleFS** (`/lfs`).
+  * Ranura MicroSD sobre bus **SDMMC1** de 4 bits.
+  * Memoria EEPROM I2C2 **AT24C256** (256 Kbit).
+* **Indicadores y Actuadores:**
+  * Buzzer con control PWM sobre TIM15 Canal 1 (PE5).
+  * LED de usuario de alta visibilidad (PF2) y Botón de usuario (PC13).
 
-Before getting started, make sure you have a proper Zephyr development
-environment. Follow the official
-[Zephyr Getting Started Guide](https://docs.zephyrproject.org/latest/develop/getting_started/index.html).
+---
 
-### Initialization
+## 2. Estructura del Repositorio
 
-The first step is to initialize the workspace folder (``my-workspace``) where
-the ``example-application`` and all Zephyr modules will be cloned. Run the following
-command:
+El proyecto implementa separación de responsabilidades por capas:
 
-```shell
-# initialize my-workspace for the example-application (main branch)
-west init -m https://github.com/zephyrproject-rtos/example-application --mr main my-workspace
-# update Zephyr modules
-cd my-workspace
-west update
+```text
+BrightC_NewFirmware/
+├── app/                              # Aplicación de firmware (código ejecutable)
+│   ├── src/main.c                    # Punto de entrada y tareas del kernel Zephyr
+│   ├── CMakeLists.txt                # Configuración de compilación del firmware
+│   ├── prj.conf                      # Kconfig base del producto
+│   ├── debug.conf                    # Configuración overlay para depuración
+│   └── tests.yaml                    # Especificación de smoke test para Twister
+├── boards/                           # Definiciones de hardware out-of-tree
+│   └── daecge/
+│       └── brightc-controllerv3/     # Soporte completo para BrightC Controller V3
+│           ├── board.yml             # Metadatos del Hardware Model v2
+│           ├── brightc-controllerv3.dts # Devicetree con el mapeo de pines y periféricos
+│           ├── brightc-controllerv3_defconfig
+│           └── doc/                  # Documentación de hardware y esquema de pines
+├── drivers/                          # Drivers específicos de periféricos externos
+├── lib/                              # Librerías de dominio y lógica pura (desacopladas)
+│   └── custom/                       # Módulos de lógica reutilizables
+├── tests/                            # Suites de pruebas automatizadas (ZTest / Twister)
+│   ├── README.md                     # Guía de pruebas unitarias y TDD
+│   └── lib/custom/                   # Pruebas unitarias de librerías
+├── doc/                              # Documentación del proyecto (Doxygen + Sphinx)
+└── west.yml                          # Manifiesto de dependencias de Zephyr y módulos
 ```
 
-### Building and running
+---
 
-To build the application, run the following command:
+## 3. Preparación del Entorno de Desarrollo
 
-```shell
-cd example-application
-west build -b $BOARD app
+Para compilar y trabajar con este repositorio se utiliza la herramienta oficial **West** de Zephyr.
+
+### Inicialización del Workspace
+
+1. Clona el repositorio e inicializa el espacio de trabajo de West:
+   ```bash
+   west init -m https://github.com/dowhile98/BrightC_NewFirmware --mr main brightc_workspace
+   cd brightc_workspace
+   ```
+
+2. Descarga Zephyr RTOS y todos los módulos requeridos por el manifiesto:
+   ```bash
+   west update
+   ```
+
+3. Instala las dependencias de Python:
+   ```bash
+   pip install -r zephyr/scripts/requirements.txt
+   ```
+
+---
+
+## 4. Compilación y Grabación del Firmware
+
+### Compilación Estándar (Modo Producción)
+
+Para compilar el firmware dirigido a la placa **DAECGE BrightC Controller V3**:
+
+```bash
+west build -b brightc-controllerv3 app
 ```
 
-where `$BOARD` is the target board.
+El binario resultante se generará en `build/zephyr/zephyr.bin` (y `zephyr.elf`).
 
-You can use the `custom_plank` board found in this
-repository. Note that Zephyr sample boards may be used if an
-appropriate overlay is provided (see `app/boards`).
+### Compilación con Modo Depuración
 
-A sample debug configuration is also provided. To apply it, run the following
-command:
+Para habilitar logging extendido e información de depuración:
 
-```shell
-west build -b $BOARD app -- -DEXTRA_CONF_FILE=debug.conf
+```bash
+west build -b brightc-controllerv3 app -- -DEXTRA_CONF_FILE=debug.conf
 ```
 
-Once you have built the application, run the following command to flash it:
+### Grabación (Flashing) vía SWD
 
-```shell
+El flasheo se realiza a través de la interfaz SWD mediante ST-Link, OpenOCD o J-Link:
+
+```bash
+# Flasheo predeterminado con STM32CubeProgrammer
 west flash
+
+# Alternativa mediante OpenOCD
+west flash --runner openocd
+
+# Alternativa mediante J-Link
+west flash --runner jlink
 ```
 
-### Testing
+---
 
-To execute Twister integration tests, run the following command:
+## 5. Pruebas Automatizadas y TDD
 
-```shell
-west twister -T tests --integration
+El proyecto cuenta con una estrategia de pruebas multinivel orquestada por **Twister**:
+
+```bash
+# 1. Smoke Test de compilación del firmware de producción
+west twister -T app -v --inline-logs --integration
+
+# 2. Ejecutar la suite completa de pruebas unitarias y de integración
+west twister -T tests -v --inline-logs --integration
 ```
 
-### Documentation
+### Ciclo TDD Rápido en Host (`native_sim` / QEMU)
 
-A minimal documentation setup is provided for Doxygen and Sphinx. To build the
-documentation first change to the ``doc`` folder:
+Durante el ciclo diario de desarrollo (Red -> Green -> Refactor), las pruebas de lógica se ejecutan localmente en 1 a 2 segundos sin necesidad de hardware:
 
-```shell
+```bash
+# Ejecución nativa en el host
+west build -b native_sim tests/lib/custom -p always -t run
+
+# Ejecución emulada en QEMU ARM Cortex-M3
+west build -b qemu_cortex_m3 tests/lib/custom -p always -t run
+```
+
+### Simulación Virtual de Periféricos con Renode
+
+Para pruebas de integración donde se requiere emular periféricos específicos del **STM32H743ZI** (como los expansores SPI **MCP23S17**, memorias QSPI o transceptores RS-485), se cuenta con soporte para simulación virtual mediante **Renode** (Antmicro), permitiendo validar el comportamiento del sistema sin hardware físico conectado.
+
+Para más detalles, consulta la [Guía de Pruebas](tests/README.md).
+
+---
+
+## 6. Generación de Documentación
+
+El proyecto incluye configuración para generar documentación de API con **Doxygen** y manuales técnicos con **Sphinx**:
+
+```bash
 cd doc
-```
 
-Before continuing, check if you have Doxygen installed. It is recommended to
-use the same Doxygen version used in [CI](.github/workflows/docs.yml). To
-install Sphinx, make sure you have a Python installation in place and run:
-
-```shell
+# Instalar dependencias de documentación
 pip install -r requirements.txt
-```
 
-API documentation (Doxygen) can be built using the following command:
-
-```shell
+# Generar documentación de la API con Doxygen
 doxygen
-```
 
-The output will be stored in the ``_build_doxygen`` folder. Similarly, the
-Sphinx documentation (HTML) can be built using the following command:
-
-```shell
+# Generar documentación en HTML con Sphinx
 make html
 ```
 
-The output will be stored in the ``_build_sphinx`` folder. You may check for
-other output formats other than HTML by running ``make help``.
+Los documentos generados se ubicarán en `doc/_build_sphinx/html/index.html`.
