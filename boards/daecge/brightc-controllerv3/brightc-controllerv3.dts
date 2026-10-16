@@ -24,6 +24,8 @@
 		zephyr,flash = &flash0;
 		zephyr,dtcm = &dtcm;
 		zephyr,code-partition = &slot0_partition;
+		zephyr,wifi = &esp_hosted_mcu_wifi;
+		zephyr,bt-hci = &esp_hosted_mcu_hci;
 	};
 
 	leds {
@@ -119,7 +121,6 @@
 		rs485_1_de: rs485_1_de { gpios = <&gpiod 4 GPIO_ACTIVE_HIGH>; label = "RS485-1 DE/RE Enable"; };
 		rs485_2_de: rs485_2_de { gpios = <&gpiog 8 GPIO_ACTIVE_HIGH>; label = "RS485-2 DE/RE Enable"; };
 		dwin_en:    dwin_en    { gpios = <&gpiod 9 GPIO_ACTIVE_LOW>; label = "DWIN LCD Power Enable"; };
-		esp32_rst:  esp32_rst  { gpios = <&gpiod 14 GPIO_ACTIVE_LOW>; label = "ESP32 Reset"; };
 		eth_phy_rst: eth_phy_rst { gpios = <&gpiog 4 GPIO_ACTIVE_LOW>; label = "Ethernet PHY Reset"; };
 		usb_pwr_on: usb_pwr_on { gpios = <&gpiod 10 GPIO_ACTIVE_HIGH>; label = "USB Power Enable"; };
 	};
@@ -235,12 +236,15 @@
 	status = "okay";
 };
 
-/* ---- Serial: ESP32 Wi-Fi (UART4 on PD1/PD0) ---- */
+/* ---- Serial: ESP32 (UART4 on PD1/TX, PD0/RX with DMA TX/RX) ---- */
 
 &uart4 {
 	pinctrl-0 = <&uart4_tx_pd1 &uart4_rx_pd0>;
 	pinctrl-names = "default";
 	current-speed = <115200>;
+	dmas = <&dmamux1 5 64 (STM32_DMA_PERIPH_TX | STM32_DMA_PRIORITY_HIGH)>,
+	       <&dmamux1 6 63 (STM32_DMA_PERIPH_RX | STM32_DMA_PRIORITY_HIGH)>;
+	dma-names = "tx", "rx";
 	status = "okay";
 };
 
@@ -333,20 +337,35 @@
 	};
 };
 
-/* ---- SPI4: W5500 Ethernet (PE14/MOSI, PE13/MISO, PE12/SCK, PE11/NSS) ---- */
+/* ---- SPI4: ESP32 esp-hosted-mcu (PE14/MOSI, PE13/MISO, PE12/SCK, PE11/NSS, PD13/HS, PE15/DR, PD14/NRST) ---- */
 
 &spi4 {
-	pinctrl-0 = <&spi4_mosi_pe14 &spi4_miso_pe13 &spi4_sck_pe12 &spi4_nss_pe11>;
+	pinctrl-0 = <&spi4_mosi_pe14 &spi4_miso_pe13 &spi4_sck_pe12>;
 	pinctrl-names = "default";
+	cs-gpios = <&gpioe 11 GPIO_ACTIVE_LOW>;
+	dmas = <&dmamux1 3 84 (STM32_DMA_PERIPH_TX | STM32_DMA_PRIORITY_HIGH)>,
+	       <&dmamux1 4 83 (STM32_DMA_PERIPH_RX | STM32_DMA_PRIORITY_HIGH)>;
+	dma-names = "tx", "rx";
 	status = "okay";
 
-	w5500: eth_w5500@0 {
-		compatible = "wiznet,w5500";
+	esp_hosted_mcu: esp-hosted-mcu@0 {
+		compatible = "espressif,esp-hosted-mcu";
 		reg = <0>;
-		spi-max-frequency = <DT_FREQ_M(32)>;
-		int-gpios = <&gpiod 13 GPIO_ACTIVE_LOW>;
-		reset-gpios = <&gpioe 15 GPIO_ACTIVE_LOW>;
-		status = "disabled";
+		spi-max-frequency = <DT_FREQ_M(10)>;
+		reset-gpios = <&gpiod 14 GPIO_ACTIVE_HIGH>;
+		handshake-gpios = <&gpiod 13 GPIO_ACTIVE_HIGH>;
+		dataready-gpios = <&gpioe 15 GPIO_ACTIVE_HIGH>;
+		status = "okay";
+
+		esp_hosted_mcu_wifi: wifi {
+			compatible = "espressif,esp-hosted-mcu-wifi";
+			status = "okay";
+		};
+
+		esp_hosted_mcu_hci: bt-hci {
+			compatible = "espressif,esp-hosted-mcu-bt-hci";
+			status = "okay";
+		};
 	};
 };
 

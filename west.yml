@@ -29,6 +29,7 @@ manifest:
           - segger
           - lvgl
           - zcbor
+          - nanopb
           - cmsis-dsp
           - cmsis-nn
     - name: microconf

@@ -1,15 +1,14 @@
-# Copyright (c) 2021 Nordic Semiconductor ASA
+# Copyright (c) 2026 DAECGE
 # SPDX-License-Identifier: Apache-2.0
-#
-# This file is the application Kconfig entry point. All application Kconfig
-# options can be defined here or included via other application Kconfig files.
-# You can browse these options using the west targets menuconfig (terminal) or
-# guiconfig (GUI).
 
-menu "Zephyr"
+mainmenu "DAECGE BrightC Controller V3 Application"
+
+config WIFI_SAMPLE_SSID
+	string "Wi-Fi SSID for automatic STA connection on boot (leave empty for shell-only)"
+	default ""
+
+config WIFI_SAMPLE_PSK
+	string "Wi-Fi PSK for automatic STA connection (leave empty for open network)"
+	default ""
+
 source "Kconfig.zephyr"
-endmenu
-
-module = APP
-module-str = APP
-source "subsys/logging/Kconfig.template.log_config"
