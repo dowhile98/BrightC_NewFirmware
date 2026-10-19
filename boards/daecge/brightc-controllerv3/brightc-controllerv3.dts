@@ -343,15 +343,12 @@
 	pinctrl-0 = <&spi4_mosi_pe14 &spi4_miso_pe13 &spi4_sck_pe12>;
 	pinctrl-names = "default";
 	cs-gpios = <&gpioe 11 GPIO_ACTIVE_LOW>;
-	dmas = <&dmamux1 3 84 (STM32_DMA_PERIPH_TX | STM32_DMA_PRIORITY_HIGH)>,
-	       <&dmamux1 4 83 (STM32_DMA_PERIPH_RX | STM32_DMA_PRIORITY_HIGH)>;
-	dma-names = "tx", "rx";
 	status = "okay";
 
 	esp_hosted_mcu: esp-hosted-mcu@0 {
 		compatible = "espressif,esp-hosted-mcu";
 		reg = <0>;
-		spi-max-frequency = <DT_FREQ_M(10)>;
+		spi-max-frequency = <DT_FREQ_M(5)>;
 		reset-gpios = <&gpiod 14 GPIO_ACTIVE_HIGH>;
 		handshake-gpios = <&gpiod 13 GPIO_ACTIVE_HIGH>;
 		dataready-gpios = <&gpioe 15 GPIO_ACTIVE_HIGH>;
